@@ -4,6 +4,7 @@ import {
   deleteNote,
   editNotes,
   fetchAllNotes,
+  fetchNote,
   markAsComplete,
   markAsIncomplete,
 } from "../controller/notes.controller.js";
@@ -15,9 +16,10 @@ router.get("/ip", (req, res) => {
 });
 router.post("/add-new-note", addNewNote);
 router.get("/", fetchAllNotes);
+router.get("/fetch-note/:id", fetchNote);
 router.put("/:id", editNotes);
 router.put("/completed/:id", markAsComplete);
 router.put("/incomplete/:id", markAsIncomplete);
-router.put("/delete/:id", deleteNote);
+router.delete("/delete/:id", deleteNote);
 
 export default router;

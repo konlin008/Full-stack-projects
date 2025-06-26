@@ -37,6 +37,31 @@ export const fetchAllNotes = async (_, res) => {
     });
   }
 };
+export const fetchNote = async (req, res) => {
+  try {
+    const noteId = req.params.id;
+    if (!noteId) {
+      return res.status(400).json({
+        msg: "Something Went Wrong ",
+      });
+    }
+    const note = await Note.findOne({ _id: noteId });
+    if (!note) {
+      return res.status(404).json({
+        msg: "Note Not Found ",
+      });
+    }
+    res.status(200).json({
+      note,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      msg: "Internal Server Error",
+    });
+  }
+};
 export const editNotes = async (req, res) => {
   try {
     const noteId = req.params.id;
