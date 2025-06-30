@@ -3,7 +3,6 @@ import User from "../model/user.schema.js";
 export const getUserName = async (req, res) => {
   try {
     const userId = req.user_id;
-    console.log("Authenticated user ID:", userId);
     if (!userId)
       return res.status(400).json({
         msg: "User ID is required",

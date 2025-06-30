@@ -59,7 +59,7 @@ export const logIn = async (req, res) => {
         success: false,
       });
     }
-    generateToken(res, user, `welcome ${user.userName}`);
+    generateToken(res, user._id, `welcome ${user.userName}`);
   } catch (error) {
     console.log(error);
     return res.status(500).json({

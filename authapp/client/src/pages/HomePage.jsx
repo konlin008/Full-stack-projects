@@ -2,18 +2,21 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 export const HomePage = () => {
-    const [user, setUser] = useState({})
+    const [userName, setUserName] = useState('')
     const getUserName = async () => {
         try {
-            await axios.get('http://localhost:8080/api/v1/user', { withCredentials: true })
+            const res = await axios.get('http://localhost:8080/api/v1/user', { withCredentials: true })
+            setUserName(res.data?.user_Name)
         } catch (error) {
             console.log(error);
         }
 
     }
-    getUserName()
-
+    useEffect(() => {
+        getUserName()
+    }, [])
     return (
-        <div>HomePage</div>
+        <div>welcome {userName}</div>
+
     )
 }
